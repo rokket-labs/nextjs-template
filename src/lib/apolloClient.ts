@@ -13,7 +13,7 @@ const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: 'https://api.thecatclub.cl/graphql',
+      uri: process.env.NEXT_PUBLIC_API_URL,
       credentials: 'include',
     }),
     cache: new InMemoryCache(),
