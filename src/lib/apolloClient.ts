@@ -14,7 +14,7 @@ const createApolloClient = () => {
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
       uri: process.env.NEXT_PUBLIC_API_URL,
-      credentials: 'include',
+      // credentials: 'include',
     }),
     cache: new InMemoryCache(),
   })

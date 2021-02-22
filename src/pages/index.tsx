@@ -9,16 +9,14 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { NextPage } from 'next'
 import { useSession } from 'next-auth/client'
 
-import { Container } from '../components/Container'
-import { CTA } from '../components/CTA'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { Footer } from '../components/Footer'
 import { Hero } from '../components/Hero'
 import { Main } from '../components/Main'
 
-const Index: React.FC = () => {
+const Index: NextPage = () => {
   const [session] = useSession()
 
   const renderFooter = () => {
@@ -37,7 +35,7 @@ const Index: React.FC = () => {
   }
 
   return (
-    <Container height="100vh">
+    <>
       <Hero />
       <Main>
         <Text>
@@ -88,11 +86,8 @@ const Index: React.FC = () => {
           </ListItem>
         </List>
       </Main>
-
-      <DarkModeSwitch />
       <Footer>{renderFooter()}</Footer>
-      <CTA />
-    </Container>
+    </>
   )
 }
 
