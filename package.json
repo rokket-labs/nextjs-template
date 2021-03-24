@@ -5,7 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint:fix": "eslint ''"
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@chakra-ui/icons": "1.0.7",
