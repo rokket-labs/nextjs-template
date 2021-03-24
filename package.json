@@ -17,6 +17,7 @@
     "framer-motion": "4.0.3",
     "graphql": "15.5.0",
     "graphql-request": "3.4.0",
+    "graphql-tag": "2.11.0",
     "jsonwebtoken": "8.5.1",
     "mongodb": "3.6.5",
     "next": "latest",
