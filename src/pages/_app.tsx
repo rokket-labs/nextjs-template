@@ -1,25 +1,24 @@
-import { ApolloProvider } from '@apollo/client'
+import { QueryClientProvider } from 'react-query'
 import { ChakraProvider } from '@chakra-ui/react'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 
-import { Layout } from '../components/Layout'
-import { useApollo } from '../lib/apolloClient'
+import { Layout } from 'components/Layout'
+import { queryClient } from 'lib/queryClient'
+
 import theme from '../theme'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
-  const apolloClient = useApollo(pageProps.initialApolloState)
-
   return (
     <Provider session={pageProps.session}>
-      <ApolloProvider client={apolloClient}>
+      <QueryClientProvider client={queryClient}>
         <ChakraProvider resetCSS theme={theme}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
-      </ApolloProvider>
+      </QueryClientProvider>
     </Provider>
   )
 }

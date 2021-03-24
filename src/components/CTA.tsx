@@ -1,9 +1,8 @@
 import { useMemo } from 'react'
+import { useQueryClient } from 'react-query'
 import { Box, Button, Link as ChakraLink, Spinner } from '@chakra-ui/react'
 import { useRouter } from 'next/dist/client/router'
 import { signIn, signOut, useSession } from 'next-auth/client'
-
-import { useApollo } from '../lib/apolloClient'
 
 import { Container } from './Container'
 
@@ -13,7 +12,7 @@ type Route = {
 }
 
 export const CTA: React.FC = () => {
-  const apolloClient = useApollo()
+  const queryClient = useQueryClient()
   const [session, loading] = useSession()
   const router = useRouter()
 
@@ -22,7 +21,7 @@ export const CTA: React.FC = () => {
 
     const signOutAndClearData = async () => {
       await signOut()
-      await apolloClient.clearStore()
+      queryClient.clear()
     }
 
     return (
@@ -40,6 +39,7 @@ export const CTA: React.FC = () => {
 
   const buttonRoute: Route = useMemo<Route>(() => {
     if (router.route === '/') return { route: '/launches', text: 'Launches' }
+
     return { route: '/', text: 'Home' }
   }, [router.route])
 

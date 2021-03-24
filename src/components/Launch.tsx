@@ -8,6 +8,9 @@ type LaunchProps = {
   data: LaunchData
 }
 
+const randomElem = <T,>(arr: T[]): T | null =>
+  arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null
+
 export const Launch: React.FC<LaunchProps> = ({ data }) => (
   <WrapItem>
     <Box borderWidth={1} borderRadius={8} minW={400}>
@@ -17,7 +20,9 @@ export const Launch: React.FC<LaunchProps> = ({ data }) => (
           width={350}
           layout="responsive"
           src={
-            data.ships[0]?.image ||
+            randomElem<{ name: string; image: string; home_port: string }>(
+              data.ships,
+            )?.image ||
             'https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRocket&psig=AOvVaw1RYDAh-BxCkYXDRmVwYK5Q&ust=1614093755794000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMCC3fzl_e4CFQAAAAAdAAAAABAD'
           }
         />
