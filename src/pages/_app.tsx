@@ -9,6 +9,8 @@ import { queryClient } from 'lib/queryClient'
 
 import theme from '../theme'
 
+console.log('testing')
+
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider session={pageProps.session}>
