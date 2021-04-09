@@ -3,8 +3,7 @@
   "extends": [
     "rokket-labs/react",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:@typescript-eslint/recommended"
   ],
   "settings": {
     "react": {
@@ -32,6 +31,7 @@
     ],
     "react/prop-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/jsx-uses-react": "off",

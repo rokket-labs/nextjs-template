@@ -1,10 +1,12 @@
-import { useCallback } from 'react'
-import { useQuery } from '@apollo/client'
+import { useCallback, useEffect } from 'react'
+import { useQuery } from 'react-query'
 import { Box, Heading, useToast, Wrap } from '@chakra-ui/react'
 import { NextPage } from 'next'
+import { useSession } from 'next-auth/client'
 
-import { Launch } from '../../components/Launch'
-import Loading from '../../components/Loading'
+import { Launch } from 'components/Launch'
+import Loading from 'components/Loading'
+import { graphqlClient } from 'lib/queryClient'
 
 import LAUNCHES_PAST from './LaunchesPast.gql'
 
@@ -32,21 +34,31 @@ type QueryData = {
   launchesPast: LaunchData[]
 }
 
+const useRocketLaunches = () => {
+  const [session] = useSession()
+
+  return useQuery('launches', async () =>
+    graphqlClient()
+      .setHeader('Authorization', `Bearer ${session?.accessToken}`)
+      .request<QueryData>(LAUNCHES_PAST),
+  )
+}
+
 const Launches: NextPage = () => {
   const toast = useToast()
+  const { data, isLoading, error } = useRocketLaunches()
 
-  const { data, loading } = useQuery<QueryData>(LAUNCHES_PAST, {
-    onError: err => {
+  useEffect(() => {
+    error &&
       toast({
         title: 'There was an error.',
-        description: err.message,
+        description: error as string,
         position: 'top-right',
         status: 'error',
         duration: 9000,
         isClosable: true,
       })
-    },
-  })
+  }, [error, toast])
 
   const renderRocketLaunch = useCallback(
     () =>
@@ -61,7 +73,7 @@ const Launches: NextPage = () => {
       <Heading as="h2" mb="0.75rem">
         Rocket Launches
       </Heading>
-      {loading ? <Loading /> : <Wrap>{renderRocketLaunch()}</Wrap>}
+      {isLoading ? <Loading /> : <Wrap>{renderRocketLaunch()}</Wrap>}
     </Box>
   )
 }
