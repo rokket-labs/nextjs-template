@@ -18,9 +18,9 @@ import { Hero } from '../components/Hero'
 import { Main } from '../components/Main'
 
 const renderFooter = (session: Session | null | undefined) => {
-  if (!session) return <Text>Not logged in</Text>
+  if (!session || !session.user) return <Text>Not logged in</Text>
 
-  const { image, name, email } = session.user
+  const { image = '', name = '', email = '' } = session.user
 
   return (
     <VStack>

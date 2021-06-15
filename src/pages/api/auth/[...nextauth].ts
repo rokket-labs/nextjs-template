@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
-import NextAuth, { NextAuthOptions, Session, User } from 'next-auth'
-import { WithAdditionalParams } from 'next-auth/_utils'
-import { JWT } from 'next-auth/jwt'
+import NextAuth, { NextAuthOptions } from 'next-auth'
+import { JWT, JWTDecodeParams, JWTEncodeParams } from 'next-auth/jwt'
 import Providers from 'next-auth/providers'
 
 const secret = process.env.SECRET || 'VERYSECRETROKKETWOW'
@@ -19,7 +18,8 @@ const options: NextAuthOptions = {
     jwt: true,
   },
   jwt: {
-    encode: async ({ secret, token }) => {
+    encode: async props => {
+      const { token, secret } = props as JWTEncodeParams
       const jwtClaims = {
         sub: (token?.id as number | string).toString(),
         id: (token?.id as number | string).toString(),
@@ -32,19 +32,22 @@ const options: NextAuthOptions = {
 
       return jwt.sign(jwtClaims, secret, { algorithm: 'HS256' })
     },
-    decode: async ({ secret, token = '' }) =>
-      jwt.verify(token, secret, {
+    decode: async props => {
+      const { token = '', secret } = props as JWTDecodeParams
+
+      return jwt.verify(token, secret, {
         algorithms: ['HS256'],
-      }) as WithAdditionalParams<JWT>,
+      }) as JWT
+    },
   },
   callbacks: {
     session: async (session, token) => {
       const encodedToken = jwt.sign(token, secret, { algorithm: 'HS256' })
 
-      session.user = token as WithAdditionalParams<User>
+      session.user = token
       session.accessToken = encodedToken
 
-      return Promise.resolve(session as WithAdditionalParams<Session>)
+      return Promise.resolve(session)
     },
     jwt: async (token, user) => {
       if (user) token.id = (user as { id: string })?.id.toString()
