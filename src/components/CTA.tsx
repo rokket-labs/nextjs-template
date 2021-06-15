@@ -57,6 +57,11 @@ export const CTA: React.FC = () => {
           {buttonRoute.text}
         </Button>
       </ChakraLink>
+      <ChakraLink href="/crud" flexGrow={1} mx={2}>
+        <Button width="100%" variant="outline" colorScheme="green">
+          CRUD
+        </Button>
+      </ChakraLink>
     </Container>
   )
 }
