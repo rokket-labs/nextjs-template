@@ -2,9 +2,9 @@
   "parser": "@typescript-eslint/parser",
   "extends": [
     "rokket-labs/react",
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "next"
+    "plugin:security-node/recommended",
+    "plugin:@next/next/recommended"
   ],
   "settings": {
     "react": {
@@ -16,7 +16,13 @@
     "node": true,
     "es6": true
   },
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "simple-import-sort",
+    "security-node",
+    "react-hooks"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
