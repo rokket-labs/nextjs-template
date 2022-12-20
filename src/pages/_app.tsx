@@ -3,11 +3,10 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
+import theme from 'theme/theme'
 
 import { Layout } from 'components/Layout'
 import { queryClient } from 'lib/queryClient'
-
-import theme from '../theme'
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => {
   return (

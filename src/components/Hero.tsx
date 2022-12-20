@@ -4,7 +4,7 @@ type Props = {
   title?: string
 }
 
-export const Hero: React.FC<Props> = ({ title = 'Rokket Labs Template' }) => (
+export const Hero: React.FC<Props> = ({ title = 'Drimo Template' }) => (
   <Flex justifyContent="center" alignItems="center" height="100vh">
     <Heading fontSize="6vw">{title}</Heading>
   </Flex>

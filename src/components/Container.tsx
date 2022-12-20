@@ -8,7 +8,7 @@ export const Container: React.FC<FlexProps> = ({ title, ...props }) => {
 
   const color = { light: 'black', dark: 'white' }
 
-  const baseTitle = 'Rokket Labs NextJS Template'
+  const baseTitle = 'Drimo NextJS Template'
   const pageTitle = title ? `${baseTitle} - ${title}` : baseTitle
 
   return (
