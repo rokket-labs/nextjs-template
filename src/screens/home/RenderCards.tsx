@@ -42,7 +42,7 @@ export const RenderCards = () => {
   }
 
   return (
-    <Flex justifyContent="center" flexWrap="wrap" gridGap="20px">
+    <Flex justifyContent="center" flexWrap="wrap" gridGap="20px" maxH="60vh">
       {STACK.map((item: StackItem, index: number) => {
         return (
           <Flex

@@ -1,8 +1,13 @@
-const DrimoLogo: React.FC = () => {
+type Props = {
+  width: number
+  height: number
+}
+
+const DrimoLogo: React.FC<Props> = ({ width = 207, height = 51 }) => {
   return (
     <svg
-      width="207"
-      height="51"
+      width={width}
+      height={height}
       viewBox="0 0 207 51"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

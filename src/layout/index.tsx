@@ -24,7 +24,11 @@ export const Layout: React.FC = ({ children }) => {
           width="100%"
           bg="rgb(0,0,0,0.4)"
         >
-          <Flex flex="2" p="0 4rem" justifyContent="space-between">
+          <Flex
+            flex="2"
+            p={['0 2rem', '0 4rem']}
+            justifyContent="space-between"
+          >
             <NavigationLogo />
             <NavigationButtons />
           </Flex>

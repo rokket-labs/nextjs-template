@@ -2,7 +2,7 @@ import { Button, Flex, Heading, Spacer } from '@chakra-ui/react'
 
 export const RenderHeader: React.FC<{ onOpen: () => void }> = ({ onOpen }) => {
   return (
-    <Flex>
+    <Flex justifyContent="space-between">
       <Heading color="white" as="h2" mb="0.75rem">
         CRUD
       </Heading>

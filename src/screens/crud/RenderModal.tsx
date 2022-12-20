@@ -45,13 +45,17 @@ export const RenderModal: React.FC<{ isOpen: boolean; onClose: () => void }> =
         <form onSubmit={handleSubmit(onSubmit)}>
           <VStack spacing="4">
             <FormControl isRequired isInvalid={!!errors.firstName}>
-              <FormLabel htmlFor="name">First Name</FormLabel>
-              <Input {...register('firstName')} />
+              <FormLabel color="white" htmlFor="name">
+                First Name
+              </FormLabel>
+              <Input color="white" {...register('firstName')} />
               <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
             </FormControl>
             <FormControl isRequired isInvalid={!!errors.lastName}>
-              <FormLabel htmlFor="name">Last Name</FormLabel>
-              <Input {...register('lastName')} />
+              <FormLabel color="white" htmlFor="name">
+                Last Name
+              </FormLabel>
+              <Input color="white" {...register('lastName')} />
               <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
             </FormControl>
             <Button
