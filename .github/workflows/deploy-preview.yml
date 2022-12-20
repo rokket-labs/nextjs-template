@@ -1,4 +1,5 @@
-# Uncomment this workflow to manage preview from users without permissions to vercel
+# Uncomment this workflow to manage pull request
+# previews from users without permissions to vercel
 
 # name: deploy website
 # on: [pull_request]
