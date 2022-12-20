@@ -1,10 +1,12 @@
 import { extendTheme } from '@chakra-ui/react'
 
+import '@fontsource/inter'
+
 import { buttonStyles } from './components/button'
 import { breakpoints } from './foundations/breakpoints'
 import { colors } from './foundations/colors'
 
-const fonts = { mono: `'Menlo', monospace` }
+const fonts = { heading: 'Inter', body: 'Inter' }
 
 const theme = extendTheme({
   components: {

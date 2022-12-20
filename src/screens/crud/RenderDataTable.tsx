@@ -14,18 +14,16 @@ type HeadProps = {
 }
 
 const Head: React.FC<HeadProps> = ({ headerGroups }) => {
-  console.log(headerGroups)
-
   return (
     <Thead>
-      {headerGroups.map(headerGroup => (
-        <Tr
-          {...headerGroup.getHeaderGroupProps()}
-          key={headerGroup.getHeaderGroupProps().key}>
-          {headerGroup.headers.map(column => (
+      {headerGroups.map((headerGroup, index) => (
+        <Tr {...headerGroup.getHeaderGroupProps()} key={`${index + 1}`}>
+          {headerGroup.headers.map((column, index) => (
             <Th
+              color="white"
               {...column.getHeaderProps(column.getSortByToggleProps())}
-              key={column.id}>
+              key={`${index + 1}`}
+            >
               {column.render('Header')}
               <chakra.span pl="4">
                 {column.isSorted ? (
@@ -44,7 +42,7 @@ const Head: React.FC<HeadProps> = ({ headerGroups }) => {
   )
 }
 
-export const DataTable = () => {
+export const RenderDataTable = () => {
   const data = useMemo<TableData[]>(
     () => [
       {
@@ -88,16 +86,21 @@ export const DataTable = () => {
     useTable({ columns, data }, useSortBy)
 
   return (
-    <Table {...getTableProps()}>
+    <Table
+      bg="linear-gradient(157.18deg, rgba(255, 255, 255, 0.58) -59.81%, rgba(255, 255, 255, 0) 102.89%);"
+      border="1px solid white"
+      padding="50px 37px"
+      {...getTableProps()}
+    >
       <Head headerGroups={headerGroups} />
       <Tbody {...getTableBodyProps()}>
-        {rows.map(row => {
+        {rows.map((row, index) => {
           prepareRow(row)
 
           return (
-            <Tr {...row.getRowProps()} key={row.id}>
-              {row.cells.map(cell => (
-                <Td {...cell.getCellProps()} key={cell.value}>
+            <Tr {...row.getRowProps()} key={`${index + 1}`}>
+              {row.cells.map((cell, index) => (
+                <Td color="white" {...cell.getCellProps()} key={`${index + 1}`}>
                   {cell.render('Cell')}
                 </Td>
               ))}
