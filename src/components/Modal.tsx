@@ -27,9 +27,9 @@ export const Modal: React.FC<ModalProps> = ({
   return (
     <ChakraModal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
-        <ModalCloseButton />
+      <ModalContent bg="black">
+        <ModalHeader color="white">{title}</ModalHeader>
+        <ModalCloseButton color="white" />
         <ModalBody>{content}</ModalBody>
 
         <ModalFooter>{actionButton}</ModalFooter>
