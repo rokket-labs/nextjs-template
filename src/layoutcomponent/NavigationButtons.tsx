@@ -1,4 +1,4 @@
-import { useQueryClient } from 'react-query'
+// import { useQueryClient } from 'react-query'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
@@ -10,29 +10,29 @@ import {
   DrawerOverlay,
   Flex,
   IconButton,
-  Spinner,
+  // Spinner,
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/dist/client/router'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { useRouter } from 'next/navigation'
 
+// import { signIn, signOut, useSession } from 'next-auth/client'
 import { GithubLogo } from 'assets/svg'
 
 export const NavigationButtons: React.FC = () => {
-  const queryClient = useQueryClient()
-  const [session, loading] = useSession()
+  // const queryClient = useQueryClient()
+  // const [session, loading] = useSession()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
   const isMobile = useBreakpointValue({ base: true, sm: true, md: false })
 
   const renderAuthButton = () => {
-    const buttonText = session ? 'Sign Out' : 'Sign In'
+    // const buttonText = session ? 'Sign Out' : 'Sign In'
 
-    const signOutAndClearData = async () => {
-      await signOut()
-      queryClient.clear()
-    }
+    // const signOutAndClearData = async () => {
+    //   // await signOut()
+    //   queryClient.clear()
+    // }
 
     return (
       <Box flexGrow={3} mx={2}>
@@ -41,9 +41,9 @@ export const NavigationButtons: React.FC = () => {
           variant="custom-button"
           leftIcon={<GithubLogo />}
           colorScheme="green"
-          onClick={() => (session ? signOutAndClearData() : signIn())}
+          // onClick={() => (session ? signOutAndClearData() : signIn())}
         >
-          {loading ? <Spinner /> : buttonText}
+          {/* {loading ? <Spinner /> : buttonText} */}
         </Button>
       </Box>
     )
@@ -70,16 +70,16 @@ export const NavigationButtons: React.FC = () => {
         </Button>
         <Button
           width="100%"
-          onClick={() => handleRoute(`launches`)}
+          onClick={() => handleRoute(`api`)}
           variant="custom-ghost"
           mt={['0.5rem', '0.5rem', '0']}
           color="white"
         >
-          Launches
+          Api
         </Button>
 
         <Button
-          onClick={() => handleRoute(`/crud`)}
+          onClick={() => handleRoute(`crud`)}
           width="100%"
           variant="custom-ghost"
           mt={['0.5rem', '0.5rem', '0']}
@@ -93,7 +93,7 @@ export const NavigationButtons: React.FC = () => {
 
   return (
     <Flex alignItems="center" h="100%" py={2}>
-      <Flex d={['flex', 'flex', 'none']}>
+      <Flex display={['flex', 'flex', 'none']}>
         <IconButton
           colorScheme="dark"
           aria-label="hamburguer"
@@ -111,7 +111,7 @@ export const NavigationButtons: React.FC = () => {
           </DrawerOverlay>
         </Drawer>
       </Flex>
-      <Flex d={['none', 'none', 'flex']}>{renderContent()}</Flex>
+      <Flex display={['none', 'none', 'flex']}>{renderContent()}</Flex>
     </Flex>
   )
 }

@@ -2,22 +2,23 @@ import { useQuery, UseQueryOptions } from 'react-query'
 
 import { graphqlClient } from 'lib/queryClient'
 
-import { queryLaunches } from './Queries'
-import { LaunchData } from './types'
+import { queryRickAndMortyCharacters } from './Queries'
+import { CharactersData } from './types'
 
-export const useGetLaunches = (
+export const useGetRickAndMortyCharacters = (
   opts?: Omit<
-    UseQueryOptions<LaunchData[], unknown, LaunchData[]>,
+    UseQueryOptions<CharactersData, unknown, CharactersData>,
     'queryKey' | 'queryFn'
   >,
 ) => {
-  return useQuery<LaunchData[]>(
+  return useQuery<CharactersData>(
     [],
     async () => {
       const client = await graphqlClient()
 
-      const data: LaunchData[] = (await client.request(queryLaunches, {}))
-        .launchesPast
+      const data: CharactersData = (
+        await client.request(queryRickAndMortyCharacters, {})
+      ).characters
 
       return data
     },

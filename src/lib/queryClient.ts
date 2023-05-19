@@ -2,7 +2,7 @@ import { QueryClient } from 'react-query'
 import { GraphQLClient } from 'graphql-request'
 
 const graphqlUrl =
-  process.env.NEXT_PUBLIC_API_URL ?? 'https://api.spacex.land/graphql/'
+  process.env.NEXT_PUBLIC_API_URL ?? 'https://rickandmortyapi.com/graphql'
 
 export const graphqlClient = async () => {
   // Uncomment if you need to get a token

@@ -1,10 +1,13 @@
+'use client'
 import { Box, Flex } from '@chakra-ui/react'
 import { AnimateSharedLayout } from 'framer-motion'
 
 import { NavigationButtons } from './NavigationButtons'
 import { NavigationLogo } from './NavigationLogo'
 
-export const Layout: React.FC = ({ children }) => {
+export const LayoutComponent: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <AnimateSharedLayout>
       <Flex position="relative" w="100%" h="100%">
