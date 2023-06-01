@@ -1,4 +1,3 @@
-import { QueryClient } from 'react-query'
 import { GraphQLClient } from 'graphql-request'
 
 const graphqlUrl =
@@ -17,7 +16,7 @@ export const graphqlClient = async () => {
   return client
 }
 
-export const queryClient = new QueryClient({
+export const queryClient = {
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
@@ -25,4 +24,4 @@ export const queryClient = new QueryClient({
       retry: false,
     },
   },
-})
+}
