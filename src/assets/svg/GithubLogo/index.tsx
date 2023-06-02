@@ -9,7 +9,6 @@ const GithubLogo: React.FC = () => {
       version="1.1"
       width="20"
       data-view-component="true"
-      className="octicon octicon-mark-github v-align-middle"
     >
       <path
         fillRule="evenodd"

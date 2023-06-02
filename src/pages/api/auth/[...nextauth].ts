@@ -1,68 +1,27 @@
-import jwt from 'jsonwebtoken'
-import NextAuth, { NextAuthOptions } from 'next-auth'
-import { JWT, JWTDecodeParams, JWTEncodeParams } from 'next-auth/jwt'
-import Providers from 'next-auth/providers'
+import NextAuth, { AuthOptions } from 'next-auth'
+import GithubProvider from 'next-auth/providers/github'
 
-const secret = process.env.SECRET || 'VERYSECRETROKKETWOW'
-
-const options: NextAuthOptions = {
+export const authOptions: AuthOptions = {
+  // Configure one or more authentication providers
   providers: [
-    Providers.GitHub({
-      clientId: process.env.GITHUB_ID || '',
-      clientSecret: process.env.GITHUB_SECRET || '',
+    GithubProvider({
+      clientId: String(process.env.GITHUB_ID),
+      clientSecret: String(process.env.GITHUB_SECRET),
     }),
   ],
-  database: process.env.DATABASE_URL,
-  secret,
-  session: {
-    jwt: true,
-  },
-  jwt: {
-    encode: async props => {
-      const { token, secret } = props as JWTEncodeParams
-      const jwtClaims = {
-        sub: (token?.id as number | string).toString(),
-        id: (token?.id as number | string).toString(),
-        image: token?.picture || token?.image,
-        name: token?.name,
-        email: token?.email,
-        iat: Date.now() / 1000,
-        exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
-      }
-
-      return jwt.sign(jwtClaims, secret, { algorithm: 'HS256' })
-    },
-    decode: async props => {
-      const { token = '', secret } = props as JWTDecodeParams
-
-      return jwt.verify(token, secret, {
-        algorithms: ['HS256'],
-      }) as JWT
-    },
-  },
   callbacks: {
-    session: async (session, token) => {
-      const encodedToken = jwt.sign(token, secret, { algorithm: 'HS256' })
+    async signIn({ user }) {
+      let isAllowedToSignIn = true
+      const allowedUser = ['czhoffmann23']
 
-      session.user = token
-      session.accessToken = encodedToken
+      console.log(user)
 
-      return Promise.resolve(session)
-    },
-    jwt: async (token, user) => {
-      if (user) token.id = (user as { id: string })?.id.toString()
+      if (allowedUser.includes(String(user.id))) isAllowedToSignIn = true
+      else isAllowedToSignIn = false
 
-      return Promise.resolve(token)
+      return isAllowedToSignIn
     },
   },
-  // Add custom pages for login if you need them
-  // pages: {
-  //   signIn: '/auth/signin',
-  //   signOut: '/auth/signout',
-  //   error: '/auth/error', // Error code passed in query string as ?error=
-  //   verifyRequest: '/auth/verify-request', // (used for check email message)
-  //   newUser: null, // If set, new users will be directed here on first sign in
-  // },
 }
 
-export default NextAuth(options)
+export default NextAuth(authOptions)

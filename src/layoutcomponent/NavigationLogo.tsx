@@ -1,5 +1,5 @@
 import { Flex, Text, useBreakpointValue } from '@chakra-ui/react'
-import { useRouter } from 'next/dist/client/router'
+import { useRouter } from 'next/navigation'
 
 import { DrimoLogo } from 'assets/svg'
 

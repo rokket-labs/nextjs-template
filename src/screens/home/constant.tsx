@@ -21,7 +21,7 @@ export const STACK = [
     logo: (
       <Image
         src={'/NextAuth.png'}
-        alt="Picture of the author"
+        alt="Next Auth logo"
         width={80}
         height={80}
       />

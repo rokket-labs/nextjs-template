@@ -1,11 +1,11 @@
+'use client'
 import { Flex, useDisclosure } from '@chakra-ui/react'
-import { NextPage } from 'next'
 
 import { RenderDataTable } from 'screens/crud/RenderDataTable'
 import RenderHeader from 'screens/crud/RenderHeader'
 import RenderModal from 'screens/crud/RenderModal'
 
-const Crud: NextPage = () => {
+const Crud = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (

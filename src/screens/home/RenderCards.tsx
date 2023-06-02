@@ -39,15 +39,14 @@ export const RenderCards = () => {
             </Flex>
             <Flex flex="8" w="100%" justifyContent="center" p="10px">
               <Link href={item.url} passHref>
-                <a target="_blank">
-                  <Button
-                    minW="100%"
-                    variant="custom-button"
-                    leftIcon={<LinkIcon />}
-                  >
-                    Go !
-                  </Button>
-                </a>
+                <Button
+                  minW="100%"
+                  color="white"
+                  variant="custom-button"
+                  leftIcon={<LinkIcon />}
+                >
+                  Go !
+                </Button>
               </Link>
             </Flex>
           </Flex>

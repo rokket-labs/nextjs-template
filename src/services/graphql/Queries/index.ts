@@ -1,43 +1,20 @@
 import { gql } from 'graphql-request'
 
-const queryLaunches = gql`
+const queryRickAndMortyCharacters = gql`
   query {
-    launchesPast(limit: 10) {
-      mission_name
-      launch_date_local
-      launch_site {
-        site_name_long
+    characters(page: 1) {
+      info {
+        count
       }
-      links {
-        article_link
-        video_link
-      }
-      rocket {
-        rocket_name
-        first_stage {
-          cores {
-            flight
-            core {
-              reuse_count
-              status
-            }
-          }
-        }
-        second_stage {
-          payloads {
-            payload_type
-            payload_mass_kg
-            payload_mass_lbs
-          }
-        }
-      }
-      ships {
+      results {
         name
-        home_port
+        status
+        species
+        gender
         image
       }
     }
   }
 `
 
-export { queryLaunches }
+export { queryRickAndMortyCharacters }

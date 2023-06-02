@@ -24,16 +24,18 @@ const Head: React.FC<HeadProps> = ({ headerGroups }) => {
               {...column.getHeaderProps(column.getSortByToggleProps())}
               key={`${index + 1}`}
             >
-              {column.render('Header')}
-              <chakra.span pl="4">
-                {column.isSorted ? (
-                  column.isSortedDesc ? (
-                    <TriangleDownIcon aria-label="sorted descending" />
-                  ) : (
-                    <TriangleUpIcon aria-label="sorted ascending" />
-                  )
-                ) : null}
-              </chakra.span>
+              <>
+                {column.render('Header')}
+                <chakra.span pl="4">
+                  {column.isSorted ? (
+                    column.isSortedDesc ? (
+                      <TriangleDownIcon aria-label="sorted descending" />
+                    ) : (
+                      <TriangleUpIcon aria-label="sorted ascending" />
+                    )
+                  ) : null}
+                </chakra.span>
+              </>
             </Th>
           ))}
         </Tr>
@@ -101,7 +103,7 @@ export const RenderDataTable = () => {
             <Tr {...row.getRowProps()} key={`${index + 1}`}>
               {row.cells.map((cell, index) => (
                 <Td color="white" {...cell.getCellProps()} key={`${index + 1}`}>
-                  {cell.render('Cell')}
+                  <>{cell.render('Cell')}</>
                 </Td>
               ))}
             </Tr>
